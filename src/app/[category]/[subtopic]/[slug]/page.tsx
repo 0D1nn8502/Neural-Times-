@@ -2,16 +2,7 @@
 import { categories } from "@/app/types";
 
 
-interface StoryPageProps {
-    params: {
-        category: string;
-        subtopic: string;
-        slug: string;
-      };
-}
-
-
-export default function StoryPage({params}: StoryPageProps) {
+export default function StoryPage({params} : {params: {category: string; subtopic: string; slug: string;}}) {
     const {category, subtopic, slug} = params; 
 
     // Find matching story data from our 'categories' array // 
