@@ -1,7 +1,7 @@
 
 import { categories } from "@/app/types";
 
-export default async function StoryPage({
+export default function StoryPage({
   params,
 }: {
   params: {
