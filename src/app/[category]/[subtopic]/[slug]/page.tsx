@@ -3,12 +3,14 @@ import { categories } from "@/app/types";
 
 export default function StoryPage({
   params,
+  searchParams 
 }: {
   params: {
     category: string;
     subtopic: string;
     slug: string;
   };
+  searchParams: {[key: string]: string | string[] | undefined};
 }) {
   const { category, subtopic, slug } = params;
 
