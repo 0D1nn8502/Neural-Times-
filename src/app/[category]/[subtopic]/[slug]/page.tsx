@@ -26,8 +26,7 @@ export default async function StoryPage({
   return (
     <div style={{ padding: "1rem" }}>
       <h1>{foundStory.title}</h1>
-      <p>{foundStory.l1}</p>
-      {/* L2 content */}
+      <p>{foundStory.l2}</p> 
     </div>
   );
     

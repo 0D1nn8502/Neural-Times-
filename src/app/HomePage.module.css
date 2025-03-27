@@ -5,7 +5,7 @@
     max-width: 900px;
     margin: 2rem auto;
     padding: 1.5rem;
-    background-color: #fdfdfd;
+    background-color: white;  
     border: 1px solid #ccc;
     border-radius: 6px;
     font-family: Arial, sans-serif;
@@ -31,20 +31,21 @@
   
   .categoryDropdown {
     padding: 0.4rem 0.6rem;
-    font-size: 1rem;
+    font-size: 3rem;
   }
   
   .subtopicsRow {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid black;
     padding-bottom: 0.75rem;
+    margin-top: 2rem;
     margin-bottom: 1.5rem;
   }
   
   .subtopicButton {
-    background-color: #eee;
+    background-color: #ccc;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 0.5rem 1rem;
@@ -54,16 +55,16 @@
   }
   
   .subtopicButton:hover {
-    background-color: #ddd;
+    background-color: cyan;
   }
   
   .active {
-    background-color: #ccc;
+    background-color: cyan;
     font-weight: bold;
   }
   
   .storiesContainer {
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
   
   .subtopicTitle {
