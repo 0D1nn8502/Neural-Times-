@@ -1,7 +1,7 @@
 
 import { categories } from "@/app/types";
 
-export default function StoryPage({
+export default async function StoryPage({
   params,
   searchParams 
 }: {
@@ -12,7 +12,8 @@ export default function StoryPage({
   };
   searchParams: {[key: string]: string | string[] | undefined};
 }) {
-  const { category, subtopic, slug } = params;
+  const resolvedParams = await Promise.resolve(params);
+  const { category, subtopic, slug } = resolvedParams; 
 
   // Find matching story data from our 'categories' array 
   const foundCategory = categories.find((cat) => cat.id === category);
