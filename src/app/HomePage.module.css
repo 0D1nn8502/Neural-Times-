@@ -1,0 +1,112 @@
+
+/* app/HomePage.module.css */
+
+.mainContainer {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #fdfdfd;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: #333;
+  }
+  
+  .dropdownContainer {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .label {
+    font-weight: bold;
+  }
+  
+  .categoryDropdown {
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+  }
+  
+  .subtopicsRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .subtopicButton {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .subtopicButton:hover {
+    background-color: #ddd;
+  }
+  
+  .active {
+    background-color: #ccc;
+    font-weight: bold;
+  }
+  
+  .storiesContainer {
+    margin-top: 1rem;
+  }
+  
+  .subtopicTitle {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #444;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.25rem;
+  }
+  
+  .storyCard {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .storyCard:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  .storyTitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .storyTitle a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.2s ease;
+  }
+  
+  .storyTitle a:hover {
+    color: #0070f3; /* Next.js link color or any color you prefer */
+  }
+  
+  .storyExcerpt {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #555;
+    margin: 0;
+  }
+  
