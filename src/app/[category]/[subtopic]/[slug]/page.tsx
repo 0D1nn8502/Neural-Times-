@@ -12,6 +12,9 @@ export default async function StoryPage({
   };
   searchParams: {[key: string]: string | string[] | undefined};
 }) {
+
+  try {
+
   const resolvedParams = await Promise.resolve(params);
   const { category, subtopic, slug } = resolvedParams; 
 
@@ -31,4 +34,9 @@ export default async function StoryPage({
       {/* L2 content */}
     </div>
   );
+    
+  } catch (error) {
+    console.error("Internal error"); 
+  }
+  
 }
