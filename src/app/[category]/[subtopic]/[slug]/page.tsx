@@ -1,16 +1,12 @@
 
 import { categories } from "@/app/types";
 
+type Params = Promise <{slug: string, category: string, subtopic: string}>; 
+
 export default async function StoryPage({
-  params,
-  searchParams 
+  params
 }: {
-  params: {
-    category: string;
-    subtopic: string;
-    slug: string;
-  };
-  searchParams: {[key: string]: string | string[] | undefined};
+  params: Params 
 }) {
 
   try {
