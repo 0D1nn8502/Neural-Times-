@@ -1,37 +1,76 @@
+'use client';
 
-import { categories } from "@/app/types";
+import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
+import styles from './FullStory.module.css'; // Optional: your CSS module for styling
 
-type Params = Promise <{slug: string, category: string, subtopic: string}>; 
+interface Story {
+  _id: string;
+  title: string;
+  l1: string;
+  l2: string;
+  slug: string;
+  categoryId: string;
+  subtopicId: string;
+}
 
-export default async function StoryPage({
-  params
-}: {
-  params: Params 
-}) {
+const FullStory = () => {
+  // Extract categoryId and subtopicId from the route parameters
+  const { categoryId, subtopicId } = useParams() as {
+    categoryId: string;
+    subtopicId: string;
+  };
 
-  try {
+  const [story, setStory] = useState<Story | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
 
-  const resolvedParams = await Promise.resolve(params);
-  const { category, subtopic, slug } = resolvedParams; 
+  useEffect(() => {
+    const fetchStory = async () => {
+      setLoading(true);
+      try {
+        // Build the API URL with query parameters for categoryId and subtopicId
+        const response = await fetch(
+          `/api/story?categoryId=${encodeURIComponent(categoryId)}&subtopicId=${encodeURIComponent(subtopicId)}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+        const data = await response.json();
+        setStory(data.story);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // Find matching story data from our 'categories' array 
-  const foundCategory = categories.find((cat) => cat.id === category);
-  const foundSubTopic = foundCategory?.subtopics.find((st) => st.id === subtopic);
-  const foundStory = foundSubTopic?.stories.find((s) => s.slug === slug);
-
-  if (!foundCategory || !foundSubTopic || !foundStory) {
-    return <h1>Story not found</h1>;
-  }
+    if (categoryId && subtopicId) {
+      fetchStory();
+    }
+  }, [categoryId, subtopicId]);
 
   return (
-    <div style={{ padding: "1rem" }}>
-      <h1>{foundStory.title}</h1>
-      <p>{foundStory.l2}</p> 
+    <div className={styles.fullStoryContainer}>
+      {loading ? (
+        <div className={styles.loading}>
+          <div className={styles.spinner}></div>
+          <p>Loading full story...</p>
+        </div>
+      ) : error ? (
+        <div className={styles.error}>Error: {error}</div>
+      ) : story ? (
+        <div className={styles.storyContent}>
+          <h1 className={styles.title}>{story.title}</h1>
+          <div className={styles.fullText} style={{ whiteSpace: 'pre-wrap' }}>
+            {story.l2}
+          </div>
+        </div>
+      ) : (
+        <p className={styles.noStory}>No story found for this subtopic.</p>
+      )}
     </div>
   );
-    
-  } catch (error) {
-    console.error("Internal error"); 
-  }
-  
-}
+};
+
+export default FullStory;

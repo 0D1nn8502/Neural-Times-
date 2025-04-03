@@ -110,4 +110,9 @@
     color: #555;
     margin: 0;
   }
+ 
   
+  .addLinks{ 
+    display: flex; 
+    margin-top: 200px; 
+  }
