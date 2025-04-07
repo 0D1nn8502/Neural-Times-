@@ -3,20 +3,15 @@ import { NextResponse } from "next/server";
 import dbConnect from '@/app/utils/dbConnect';
 import { Category } from "@/app/models/Story";
 
-interface catProp {
-  params: {
-    categoryId: string; 
-  }
-}
 
-export async function GET(
-  request: Request,
-  { params }: catProp) {
+
+export async function GET({ params } : {params : {categoryId : string}}) {
+
   await dbConnect();
   
   try { 
 
-    const arrivedparams = await params; 
+    const {categoryId} = await params; 
     const category = await Category.findById(arrivedparams.categoryId);
 
     if (!category) {
