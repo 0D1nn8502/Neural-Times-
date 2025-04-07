@@ -1,6 +1,8 @@
-// components/CategoryForm.tsx
+
 import React, { useState } from 'react';
 import styles from './CategoryForm.module.css';
+
+// TO DO : Server actions to validate category creation // 
 
 const CategoryForm: React.FC = () => {
   const [name, setName] = useState('');

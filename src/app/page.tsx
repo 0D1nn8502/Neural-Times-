@@ -4,18 +4,17 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './HomePage.module.css';
 import {Category, Story, Subtopic} from "@/app/types"; 
+import { set } from 'mongoose';
 
-interface GroupedStories {
-  subtopic: Subtopic;
-  stories: Story[];
-}
 
 export default function HomePage() { 
   const [categories, setCategories] = useState<Category[]>([]); 
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
-  const [groupedStories, setGroupedStories] = useState<GroupedStories[]>([]);
+  const [subtopics, setSubtopics] = useState<Subtopic[]>([]); 
+  const [stories, setStories] = useState<Story[]>([]);
   const [selectedSubtopic, setSelectedSubtopic] = useState<string>('');
   const [loading, setLoading] = useState(false);
+  const [subtopicLabel, setsubtopiclabel] = useState<string>(''); 
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -25,7 +24,8 @@ export default function HomePage() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data: Category[] = await response.json();
-        setCategories(data);
+        setCategories(data); 
+
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -34,25 +34,51 @@ export default function HomePage() {
     fetchCategories();
   }, []);
 
+
   useEffect(() => {
-    const fetchGroupedStories = async () => {
-      if (!selectedCategoryId) return;
+    const fetchSubtopics = async () => {
+      if (!selectedCategoryId) return; 
+
+      setSelectedSubtopic('');
+
+      try {
+        const response = await fetch(`/api/subtopics?categoryId=${selectedCategoryId}`); 
+        if (!response.ok) {
+          throw new Error(`HTTP error! status : ${response.status}`); 
+        }
+
+        const data: Subtopic[] = await response.json();
+        setSubtopics(data);  
+
+      } catch (error) {
+        console.error("Error fetching subtopics:", error);
+      }
+    }
+
+    fetchSubtopics(); 
+  }, [selectedCategoryId]); 
+
+
+  useEffect(() => {
+    const fetchStories = async () => {
+      if (!selectedSubtopic || !selectedCategoryId) return;
 
       setLoading(true);
-      const localStorageKey = `groupedStories_${selectedCategoryId}`;
+      const localStorageKey = `stories_${selectedSubtopic}`;
       const localData = localStorage.getItem(localStorageKey);
 
       if (localData && localData !== '[]') {
-        setGroupedStories(JSON.parse(localData));
+        setStories(JSON.parse(localData));
         setLoading(false);
       } else {
         try {
-          const response = await fetch(`/api/stories/${selectedCategoryId}`);
+          const response = await fetch(`/api/stories/${selectedSubtopic}`); 
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
-          const data: GroupedStories[] = await response.json();
-          setGroupedStories(data);
+
+          const data: Story[] = await response.json(); 
+          setStories(data);
           localStorage.setItem(localStorageKey, JSON.stringify(data));
 
         } catch (error) {
@@ -61,11 +87,11 @@ export default function HomePage() {
           setLoading(false);
         }
       }
-      setSelectedSubtopic('');
     };
 
-    fetchGroupedStories();
-  }, [selectedCategoryId]);
+    fetchStories();
+  }, [selectedSubtopic]);
+
 
   return (
     <div className={styles.mainContainer}>
@@ -80,7 +106,7 @@ export default function HomePage() {
           value={selectedCategoryId}
           onChange={(e) => {
             setSelectedCategoryId(e.target.value);
-            setGroupedStories([]);
+            setStories([]);
           }}
         >
           <option value="">-- Please choose an option --</option>
@@ -101,13 +127,17 @@ export default function HomePage() {
       )}
 
       {/* Subtopic Buttons */}
-      {!loading && groupedStories.length > 0 && (
+      {!loading && selectedCategoryId && subtopics.length > 0 && (
         <div className={styles.subtopicsRow}>
-          {groupedStories.map(({ subtopic }) => (
+          {subtopics.map((subtopic) => (
             <button
               key={subtopic._id}
               className={`${styles.subtopicButton} ${selectedSubtopic === subtopic._id ? styles.active : ''}`}
-              onClick={() => setSelectedSubtopic(subtopic._id)}
+              onClick={() => {
+                setSelectedSubtopic(subtopic._id)  
+                setsubtopiclabel(subtopic.label); 
+                setStories([]); 
+              }}
             >
               {subtopic.label}
             </button>
@@ -118,10 +148,8 @@ export default function HomePage() {
       {/* Display the l1 stories for the selected subtopic */}
       {!loading && selectedSubtopic && (
         <div className={styles.storiesContainer}>
-          <h2>{groupedStories.find(({ subtopic }) => subtopic._id === selectedSubtopic)?.subtopic.label} Stories</h2>
-          {groupedStories
-            .find(({ subtopic }) => subtopic._id === selectedSubtopic)
-            ?.stories.map((story: Story) => (
+          <h2> {subtopicLabel} Stories </h2>
+          {stories.map((story: Story) => (
               <div key={story._id} className={styles.storyCard}>
                 <div className={styles.storyTitle}>
                   <Link href={`/${selectedCategoryId}/${selectedSubtopic}/${story.slug}`}>
@@ -139,7 +167,9 @@ export default function HomePage() {
         <h3>Manage Content</h3>
       
           <ul>
-            <li> <Link href="/admin/add-category" target='_blank'> Add Category  </Link> </li>
+            <li> <Link href="/admin/add-category" target='_blank'> Add Category </Link> </li>
+            <li> <Link href="/admin/add-subtopic" target='_blank'> Add Subtopic </Link> </li>
+            <li> <Link href="/admin/add-story" target='_blank'> Add Story </Link> </li>
           </ul> 
         
       </div>

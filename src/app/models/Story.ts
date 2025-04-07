@@ -28,7 +28,7 @@ const storySchema = new mongoose.Schema({
   subtopicId: { type: mongoose.Schema.Types.ObjectId, ref: 'SubTopic', required: true } 
 }); 
 
-// Compound indexes for fast lookups by category and subtopic // 
+// Compound indexes for fast lookups by category and subtopic {Write Tradeoff...} //  
 storySchema.index({ categoryId: 1, subtopicId: 1 });
 
 

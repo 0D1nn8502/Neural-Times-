@@ -1,8 +1,6 @@
-
-
-// components/StoryForm.tsx
 import React, { useState, useEffect } from 'react';
 import styles from './StoryForm.module.css';
+import { fetchCategories } from './SubtopicForm'; 
 
 interface Category {
   _id: string;
@@ -19,38 +17,83 @@ interface Subtopic {
 const StoryForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [l1, setL1] = useState('');
-  const [l2, setL2] = useState('');
+  const [l2, setL2] = useState(''); 
+  const [slug, setSlug] = useState(''); 
   const [categoryId, setCategoryId] = useState('');
   const [subtopicId, setSubtopicId] = useState('');
   const [categories, setCategories] = useState<Category[]>([]);
   const [subtopics, setSubtopics] = useState<Subtopic[]>([]);
-  const [filteredSubtopics, setFilteredSubtopics] = useState<Subtopic[]>([]);
 
+  // Fetch categories when component mounts // 
   useEffect(() => {
-    // Replace with API calls to fetch categories and subtopics
-    setCategories([
-      { _id: '1', name: 'News', label: 'News' },
-      { _id: '2', name: 'Sports', label: 'Sports' },
-    ]);
-    setSubtopics([
-      { _id: 'a', label: 'Local', categoryId: '1' },
-      { _id: 'b', label: 'International', categoryId: '1' },
-      { _id: 'c', label: 'Football', categoryId: '2' },
-      { _id: 'd', label: 'Basketball', categoryId: '2' },
-    ]);
-  }, []);
+    
+    const loadCategories = async () => {
+      try {
+        const data = await fetchCategories(); 
+        setCategories(data); 
 
-  // Filter subtopics when category changes
+      } catch (error) {
+        console.error("Error fetching categories : ", error); 
+      }
+    }
+    loadCategories(); 
+  }, []);  
+
+  // Fetch subtopics when category changes // 
   useEffect(() => {
-    const filtered = subtopics.filter((sub) => sub.categoryId === categoryId);
-    setFilteredSubtopics(filtered);
-    setSubtopicId('');
-  }, [categoryId, subtopics]);
+    
+    if (!categoryId) {
+      setSubtopics([]); 
+      return; 
+    }
 
-  const handleSubmit = (e: React.FormEvent) => {
+    const loadSubtopics = async () => {
+
+      try {
+        const res = await fetch(`/api/subtopics?categoryId=${categoryId}`);  
+        if (!res.ok) {
+          throw new Error(`Error fetching subtopics : ${res.status}`); 
+        }        
+
+        const data = await res.json(); 
+        setSubtopics(data);   
+         
+      } catch (error) {
+        console.error("Error fetching subtopics : ", error); 
+      }
+
+    }
+    loadSubtopics(); 
+
+  }, [categoryId]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Replace with your API call to save the story
-    console.log('New Story:', { title, l1, l2, categoryId, subtopicId });
+
+    // API call to save story //  
+    try {
+      const res = await fetch('/api/stories/add', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json' 
+        }, 
+        body: JSON.stringify({title, l1, l2, categoryId, subtopicId, slug})  
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        console.log(`Successful : ${data.message}`);  
+        setL1(''); 
+        setL2(''); 
+        setTitle(''); 
+        setSlug(''); 
+      } else {
+        console.error('Error : ', data.message); 
+      }
+
+    } catch (error) {
+      console.error('Error : ', error);  
+    }
   };
 
   return (
@@ -81,7 +124,7 @@ const StoryForm: React.FC = () => {
           required
         >
           <option value="">Select a Subtopic</option>
-          {filteredSubtopics.map((sub) => (
+          {subtopics.map((sub) => (
             <option key={sub._id} value={sub._id}>
               {sub.label}
             </option>
@@ -117,7 +160,19 @@ const StoryForm: React.FC = () => {
           required
           rows={5}
         ></textarea>
+      </div> 
+
+      <div className={styles.field}>
+        <label htmlFor="l1">Slug:</label>
+        <input
+          type="text"
+          id="slug"
+          value={slug} 
+          onChange={(e) => setSlug(e.target.value)}
+          required
+        />
       </div>
+
       <button type="submit" className={styles.button}>Add Story</button>
     </form>
   );
