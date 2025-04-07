@@ -12,7 +12,7 @@ export async function GET({ params } : {params : {categoryId : string}}) {
   try { 
 
     const {categoryId} = await params; 
-    const category = await Category.findById(arrivedparams.categoryId);
+    const category = await Category.findById(categoryId);
 
     if (!category) {
       return NextResponse.json({ message: 'Category not found' }, { status: 404 });
