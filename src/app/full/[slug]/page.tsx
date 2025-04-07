@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import styles from './StoryPage.module.css';
 import { Story } from '@/app/types';
 
+
 interface Prop { 
     params: {
         slug: string; 
