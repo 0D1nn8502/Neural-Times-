@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import styles from './HomePage.module.css';
-import {Category, Story, Subtopic} from "@/app/types"; 
-import { set } from 'mongoose';
+import {Category, Story, Subtopic} from "@/app/types";
+import Link from 'next/link'; 
 
+// TODO : Can the categories be prefetched (SSR)? //  
 
 export default function HomePage() { 
   const [categories, setCategories] = useState<Category[]>([]); 
@@ -152,7 +152,7 @@ export default function HomePage() {
           {stories.map((story: Story) => (
               <div key={story._id} className={styles.storyCard}>
                 <div className={styles.storyTitle}>
-                  <Link href={`/${selectedCategoryId}/${selectedSubtopic}/${story.slug}`}>
+                  <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`}>      
                     {story.title}
                   </Link>
                 </div>
@@ -169,7 +169,7 @@ export default function HomePage() {
           <ul>
             <li> <Link href="/admin/add-category" target='_blank'> Add Category </Link> </li>
             <li> <Link href="/admin/add-subtopic" target='_blank'> Add Subtopic </Link> </li>
-            <li> <Link href="/admin/add-story" target='_blank'> Add Story </Link> </li>
+            <li> <Link href="/admin/add-story" target='_blank'> Add Story </Link> </li> 
           </ul> 
         
       </div>

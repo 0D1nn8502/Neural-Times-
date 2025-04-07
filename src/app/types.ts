@@ -9,7 +9,7 @@ export interface Category {
 export interface Subtopic {
   _id: string;      // Automatically created by Mongoose 
   name: string; 
-  label: string;
+  label: string; 
   categoryId: string;  // Stored as a string version of ObjectId
 }
 
