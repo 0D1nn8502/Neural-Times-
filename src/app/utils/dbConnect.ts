@@ -1,9 +1,18 @@
 import mongoose from "mongoose";
 
 const dbConnect = async() => {
-    if (mongoose.connection.readyState >= 1) return; 
+    if (mongoose.connection.readyState >= 1) {
+        return;  
+    };  
 
-    return mongoose.connect(process.env.MONGODB_URI!);       
+    try {
+        await mongoose.connect(process.env.MONGODB_URI!);    
+        return {success: true, message: "Database connected"}; 
+
+    } catch (error) {
+        console.error("Error connecting to database : ", error); 
+        return {success: false, error: `Database connection failed : ${error}`};
+    }
 }
 
 export default dbConnect; 

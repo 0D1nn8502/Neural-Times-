@@ -7,7 +7,7 @@ export async function GET(request: Request, { params }: { params: Promise <{ sub
     const { subtopicId } = await params;  
 
     try {
-        const stories = await Story.find({ subtopicId }); // Fetch stories by subtopicId
+        const stories = await Story.find({ subtopicId }); // Fetch stories by subtopicId // 
         return NextResponse.json(stories, { status: 200 });
     } catch (error) {
         return NextResponse.json({ message: 'Failed to fetch stories: ' + error }, { status: 500 });

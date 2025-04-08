@@ -7,7 +7,11 @@ import { Category } from "@/app/models/Story";
 
 export async function GET(request : NextRequest, { params } : {params : Promise<{categoryId : string}>}) {
 
-  await dbConnect();
+  const connection = await dbConnect();
+  
+  if (!connection?.success) {
+    return NextResponse.json({message: connection?.error}, {status: 500}); 
+  }
   
   try { 
 
