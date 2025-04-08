@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import dbConnect from '@/app/utils/dbConnect'; 
 import { Story } from "@/app/models/Story"; 
 
-export async function GET(request: Request, { params }: { params: { subtopicId: string } }) {
+export async function GET(request: Request, { params }: { params: Promise <{ subtopicId: string }> }) {
     await dbConnect();
     const { subtopicId } = await params;  
 

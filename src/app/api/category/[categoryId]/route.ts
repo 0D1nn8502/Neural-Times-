@@ -5,13 +5,13 @@ import { Category } from "@/app/models/Story";
 
 
 
-export async function GET(request : NextRequest, { params } : {params : {categoryId : string}}) {
+export async function GET(request : NextRequest, { params } : {params : Promise<{categoryId : string}>}) {
 
   await dbConnect();
   
   try { 
 
-    const {categoryId} = params; 
+    const {categoryId} = await params; 
     const category = await Category.findById(categoryId);
 
     if (!category) {
