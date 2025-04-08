@@ -6,16 +6,19 @@ import styles from './StoryPage.module.css';
 import { Story } from '@/app/types';
 
 
-interface Prop { 
-    params: {
-        slug: string; 
-    }
-}
+interface PageProps {
+    params: Promise <{
+      slug: string;
+    }>; 
+
+    searchParams?: { [key: string]: string | string[] | undefined };
+  }
 
 
-const StoryPage = ({params} : Prop) => {
+const StoryPage = async ({params} : PageProps) => {
+
   const searchParams = useSearchParams(); 
-  const slug = params.slug; 
+  const {slug} = await params; 
   const subtopicId = searchParams.get('subtopicId'); 
 
   console.log("SLUG :: ", slug); 
