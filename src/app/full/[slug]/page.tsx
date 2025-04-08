@@ -6,16 +6,7 @@ import styles from './StoryPage.module.css';
 import { Story } from '@/app/types';
 
 
-interface PageProps {
-    params: Promise <{
-      slug: string;
-    }>; 
-
-    searchParams?: { [key: string]: string | string[] | undefined };
-  }
-
-
-const StoryPage = async ({params} : PageProps) => {
+const StoryPage = async ({params} : {params : Promise<{slug: string}>}) => {
 
   const searchParams = useSearchParams(); 
   const {slug} = await params; 
