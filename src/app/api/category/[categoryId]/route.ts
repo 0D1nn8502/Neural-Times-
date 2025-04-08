@@ -4,7 +4,6 @@ import dbConnect from '@/app/utils/dbConnect';
 import { Category } from "@/app/models/Story";
 
 
-
 export async function GET(request : NextRequest, { params } : {params : Promise<{categoryId : string}>}) {
 
   const connection = await dbConnect();
