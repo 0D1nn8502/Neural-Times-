@@ -1,118 +1,126 @@
-
 /* app/HomePage.module.css */
 
 .mainContainer {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: white;  
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .header {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-    color: #333;
-  }
-  
-  .dropdownContainer {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .label {
-    font-weight: bold;
-  }
-  
-  .categoryDropdown {
-    padding: 0.4rem 0.6rem;
-    font-size: 3rem;
-  }
-  
-  .subtopicsRow {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    border-bottom: 1px solid black;
-    padding-bottom: 0.75rem;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .subtopicButton {
-    background-color: #ccc;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.2s ease;
-  }
-  
-  .subtopicButton:hover {
-    background-color: cyan;
-  }
-  
-  .active {
-    background-color: cyan;
-    font-weight: bold;
-  }
-  
-  .storiesContainer {
-    margin-top: 2rem;
-  }
-  
-  .subtopicTitle {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    color: #444;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 0.25rem;
-  }
-  
-  .storyCard {
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    transition: box-shadow 0.2s ease;
-  }
-  
-  .storyCard:hover {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  }
-  
-  .storyTitle {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-  
-  .storyTitle a {
-    text-decoration: none;
-    color: #333;
-    transition: color 0.2s ease;
-  }
-  
-  .storyTitle a:hover {
-    color: #0070f3; /* Next.js link color or any color you prefer */
-  }
-  
-  .storyExcerpt {
-    font-size: 0.95rem;
-    line-height: 1.4;
-    color: #555;
-    margin: 0;
-  }
- 
-  
-  .addLinks{ 
-    display: flex; 
-    margin-top: 200px; 
-  }
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fefefe;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #004c5f;
+  font-weight: 600;
+}
+
+.dropdownContainer {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.label {
+  font-weight: 600;
+  color: #333;
+}
+
+.categoryDropdown {
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.subtopicsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.subtopicButton {
+  background-color: #d1f1ff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #004c5f;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.subtopicButton:hover {
+  background-color: #a0e3ff;
+}
+
+.active {
+  background-color: #ffddb7;
+  font-weight: bold;
+  color: #5a2a00;
+}
+
+.storiesContainer {
+  margin-top: 2.5rem;
+}
+
+.subtopicTitle {
+  margin-bottom: 1.25rem;
+  font-size: 1.3rem;
+  color: #444;
+  border-bottom: 2px solid #ffd7ba;
+  padding-bottom: 0.5rem;
+}
+
+.storyCard {
+  border: 1px solid #eee;
+  background-color: #fff;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.storyCard:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.storyTitle {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #002b36;
+}
+
+.storyTitle a {
+  text-decoration: none;
+  color: #0077b6;
+  transition: color 0.2s ease;
+}
+
+.storyTitle a:hover {
+  color: #0096c7;
+}
+
+.storyExcerpt {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+}
+
+.addLinks {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}

@@ -1,17 +1,17 @@
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from '@/app/utils/dbConnect';
 import { Category } from "@/app/models/Story";
 
 
 
-export async function GET({ params } : {params : {categoryId : string}}) {
+export async function GET(request : NextRequest, { params } : {params : {categoryId : string}}) {
 
   await dbConnect();
   
   try { 
 
-    const {categoryId} = await params; 
+    const {categoryId} = params; 
     const category = await Category.findById(categoryId);
 
     if (!category) {

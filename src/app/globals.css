@@ -1,6 +1,9 @@
 
 body {
-  background-color: goldenrod;
+  background-color: cyan; /* soft sky blue / pastel background */
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .heading-container {
