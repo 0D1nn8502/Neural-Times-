@@ -5,7 +5,7 @@
   margin: 2rem auto;
   padding: 2rem;
   background-color: #fefefe;
-  border: 1px solid #e0e0e0;
+  border: 2px solid green;
   border-radius: 8px;
   font-family: 'Segoe UI', sans-serif;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -65,7 +65,7 @@
 }
 
 .active {
-  background-color: yellow;
+  background-color: #FFD700 ;
   font-weight: bold;
   color: #5a2a00;
 }
