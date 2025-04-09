@@ -17,7 +17,7 @@ export default function RootLayout({
           
           <div className={lora.className}>  
             <div className="heading-container"> 
-              <h1> Neural Times </h1>
+              <h1> PolicyStory </h1>
             </div> 
           </div>
 

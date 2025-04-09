@@ -35,14 +35,14 @@
   padding: 0.6rem 0.8rem;
   font-size: 1rem;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid green;
 }
 
 .subtopicsRow {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid lightseagreen;
   padding-bottom: 1rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -65,7 +65,7 @@
 }
 
 .active {
-  background-color: #ffddb7;
+  background-color: yellow;
   font-weight: bold;
   color: #5a2a00;
 }
@@ -83,7 +83,7 @@
 }
 
 .storyCard {
-  border: 1px solid #eee;
+  border: 2px solid seagreen;
   background-color: #fff;
   border-radius: 6px;
   margin-bottom: 1.5rem;

@@ -150,14 +150,16 @@ export default function HomePage() {
         <div className={styles.storiesContainer}>
           <h2> {subtopicLabel} Stories </h2>
           {stories.map((story: Story) => (
-              <div key={story._id} className={styles.storyCard}>
-                <div className={styles.storyTitle}>
-                  <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`}>      
-                    {story.title}
-                  </Link>
+              
+                <div key={story._id} className={styles.storyCard}>
+                  <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`}> 
+                  <div className={styles.storyTitle}>
+                      {story.title}
+                  </div>
+                  </Link> 
+                  <p className={styles.storyExcerpt}>{story.l1}</p>
                 </div>
-                <p className={styles.storyExcerpt}>{story.l1}</p>
-              </div>
+              
             ))}
         </div>
       )}
