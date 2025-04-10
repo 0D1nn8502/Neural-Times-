@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 const dbConnect = async() => {
-    if (mongoose.connection.readyState >= 1) {
-        return;  
+    if (mongoose.connection.readyState === 1) {
+        return {success: true, message: "Database already connected"};   
     };  
 
     try {

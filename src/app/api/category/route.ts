@@ -9,7 +9,7 @@ export async function GET() {
     const connection = await dbConnect();
   
     if (!connection?.success) {
-      return NextResponse.json({message: connection?.error}, {status: 500}); 
+      return NextResponse.json({message: "Database connection error"}, {status: 500}); 
     }  
   
     try {

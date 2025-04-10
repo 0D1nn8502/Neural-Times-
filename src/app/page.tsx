@@ -17,17 +17,19 @@ export default function HomePage() {
   const [subtopicLabel, setsubtopiclabel] = useState<string>(''); 
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchCategories = async () => { 
+    
       try {
         const response = await fetch('/api/category');  // Fetch all categories
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response.status}, message : ` );
         }
         const data: Category[] = await response.json();
         setCategories(data); 
 
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        console.error("Error fetching categories:", error.message);
+        setTimeout(fetchCategories, 2000); 
       }
     };
 
@@ -152,7 +154,7 @@ export default function HomePage() {
           {stories.map((story: Story) => (
               
                 <div key={story._id} className={styles.storyCard}>
-                  <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`}> 
+                  <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`} target='_blank'> 
                   <div className={styles.storyTitle}>
                       {story.title}
                   </div>
