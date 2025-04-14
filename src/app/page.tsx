@@ -18,7 +18,8 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchCategories = async () => { 
-    
+      setLoading(true); 
+
       try {
         const response = await fetch('/api/category');  // Fetch all categories
         if (!response.ok) {
@@ -28,8 +29,10 @@ export default function HomePage() {
         setCategories(data); 
 
       } catch (error) {
-        console.error("Error fetching categories:", error.message);
+        console.error("Error fetching categories:", error);
         setTimeout(fetchCategories, 2000); 
+      } finally {
+        setLoading(false); 
       }
     };
 
