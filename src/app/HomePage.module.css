@@ -95,11 +95,29 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
+.storyLinks {
+  display: flex;
+  justify-content: flex-end; /* Align links to the right */
+  margin-top: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: #0070f3; /* Link color */
+  font-weight: bold;
+  margin-left: 15px; /* Space between links */
+}
+
 .storyTitle {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   font-weight: bold;
   color: #002b36;
+}
+
+.bulletList {
+  list-style-type: disc; /* Use disc for bullet points */
+  margin-left: 20px; /* Indent bullet points */
 }
 
 .storyTitle a {
@@ -108,9 +126,6 @@
   transition: color 0.2s ease;
 }
 
-.storyTitle a:hover {
-  color: #0096c7;
-}
 
 .storyExcerpt {
   font-size: 1rem;

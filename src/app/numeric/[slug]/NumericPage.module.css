@@ -1,0 +1,21 @@
+.numericContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.storyTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.numericList {
+    list-style-type: disc; /* Use disc for bullet points */
+    margin-left: 20px; /* Indent bullet points */
+    color: #555;
+}

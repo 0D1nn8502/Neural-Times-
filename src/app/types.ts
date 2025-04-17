@@ -16,8 +16,13 @@ export interface Subtopic {
 export interface Story {
   _id: string;      // Automatically created by Mongoose
   title: string;
-  l1: string;
-  l2: string;
+
+  l1: Array<{ boldText: string; content: string }>;  
+
+  l2: Array<{ text: string }>;  
+
+  numeric: Array<{ boldText: string; content: string }>;   
+
   slug: string;
   categoryId: string;  // Stored as a string version of ObjectId
   subtopicId: string;  // Stored as a string version of ObjectId

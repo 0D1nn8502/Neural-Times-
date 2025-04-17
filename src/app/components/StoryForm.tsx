@@ -16,8 +16,9 @@ interface Subtopic {
 
 const StoryForm: React.FC = () => {
   const [title, setTitle] = useState('');
-  const [l1, setL1] = useState('');
-  const [l2, setL2] = useState(''); 
+  const [l1, setL1] = useState<{boldText: string; content: string}[]>([]);
+  const [l2, setL2] = useState<{text: string}[]>([]);  
+  const [numeric, setNumeric] = useState<{boldText: string; content: string}[]>([]); 
   const [slug, setSlug] = useState(''); 
   const [categoryId, setCategoryId] = useState('');
   const [subtopicId, setSubtopicId] = useState('');
@@ -67,6 +68,37 @@ const StoryForm: React.FC = () => {
 
   }, [categoryId]);
 
+  const handleAddL1 = () => {
+    setL1([...l1, { boldText: '', content: '' }]);
+  };
+
+  const handleL1Change = (index: number, field: 'boldText' | 'content', value: string) => {
+    const newL1 = [...l1];
+    newL1[index][field] = value;
+    setL1(newL1);
+  };
+
+  // New functions for numeric field
+  const handleAddNumeric = () => {
+    setNumeric([...numeric, { boldText: '', content: '' }]);
+  };
+
+  const handleNumericChange = (index: number, field: 'boldText' | 'content', value: string) => {
+    const newNumeric = [...numeric];
+    newNumeric[index][field] = value;
+    setNumeric(newNumeric);
+  };
+
+  const handleAddParagraph = () => {
+    setL2([...l2, {text: ''}]); 
+  }
+
+  const handleParagraphChange = (index: number, value: string) => {
+    const newParas = [...l2]; 
+    newParas[index].text = value; 
+    setL2(newParas); 
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -77,14 +109,15 @@ const StoryForm: React.FC = () => {
         headers: {
           'Content-Type': 'application/json' 
         }, 
-        body: JSON.stringify({title, l1, l2, categoryId, subtopicId, slug})  
+        body: JSON.stringify({title, l1, l2, categoryId, subtopicId, slug, numeric})   
       });
 
       const data = await res.json();
       if (res.ok) {
         console.log(`Successful : ${data.message}`);  
-        setL1(''); 
-        setL2(''); 
+        setL1([]); 
+        setL2([]); 
+        setNumeric([]); 
         setTitle(''); 
         setSlug(''); 
       } else {
@@ -140,30 +173,77 @@ const StoryForm: React.FC = () => {
           onChange={(e) => setTitle(e.target.value)}
           required
         />
-      </div>
-      <div className={styles.field}>
-        <label htmlFor="l1">Short Heading (l1):</label>
-        <input
-          type="text"
-          id="l1"
-          value={l1}
-          onChange={(e) => setL1(e.target.value)}
-          required
-        />
-      </div>
-      <div className={styles.field}>
-        <label htmlFor="l2">Full Story (l2):</label>
-        <textarea
-          id="l2"
-          value={l2}
-          onChange={(e) => setL2(e.target.value)}
-          required
-          rows={5}
-        ></textarea>
       </div> 
 
       <div className={styles.field}>
-        <label htmlFor="l1">Slug:</label>
+        <label> Short Heading (l1):</label>
+        {l1.map((item, index) => (
+          <div key={index} className={styles.l1Item}>
+            <input
+              type="text"
+              placeholder="Bold Text"
+              value={item.boldText}
+              onChange={(e) => handleL1Change(index, 'boldText', e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Content"
+              value={item.content}
+              onChange={(e) => handleL1Change(index, 'content', e.target.value)}
+              required
+            />
+          </div>
+        ))}
+        <button type="button" onClick={handleAddL1}>Add l1 Item</button>
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor="l2">Full Story (l2):</label>
+        {l2.map((paragraph, index) => (
+          <div key={index}> 
+            
+            <textarea
+              value={paragraph.text}
+              onChange={(e) => handleParagraphChange(index, e.target.value)} 
+              required
+              rows={3} 
+              style={{marginBottom: '10px'}} 
+            />
+
+          </div> 
+
+        ))} 
+
+        <button type='button' onClick={handleAddParagraph}> Add Paragraph </button>
+        
+      </div> 
+
+      <div className={styles.field}>
+        <label> Numeric content:</label>
+        {numeric.map((item, index) => (
+          <div key={index} className={styles.numericItem}> 
+            <input
+              type="text"
+              placeholder="Bold Text"
+              value={item.boldText}
+              onChange={(e) => handleNumericChange(index, 'boldText', e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Content"
+              value={item.content}
+              onChange={(e) => handleNumericChange(index, 'content', e.target.value)}
+              required
+            />
+          </div>
+        ))}
+        <button type="button" onClick={handleAddNumeric}>Add numeric Item</button>
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor="slug">Slug:</label>
         <input
           type="text"
           id="slug"

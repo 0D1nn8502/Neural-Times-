@@ -1,20 +1,17 @@
-'use client'; 
+'use client';
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import styles from './StoryPage.module.css';
+import styles from './NumericPage.module.css'; // Create this CSS file for styling
 import { Story } from '@/app/types';
 
-
-const fetchStory = async (slug: string, subtopicId: string | null) => {
-    if (!slug || !subtopicId) {
-        throw new Error('Slug or Subtopic ID is missing.');
+const fetchStory = async (slug: string, subtopicId: string) => {
+    if (!slug || !subtopicId) { 
+        throw new Error('Slug or subtopic is missing.');
     }
 
     try {
-        const storedStories = localStorage.getItem(`stories_${subtopicId}`);
-        console.log("Stored : ", storedStories);
-
+        const storedStories = localStorage.getItem(`stories_${subtopicId}`); 
         if (storedStories) {
             const stories = JSON.parse(storedStories);
             const foundStory = stories.find((s: Story) => s.slug === slug);
@@ -33,8 +30,8 @@ const fetchStory = async (slug: string, subtopicId: string | null) => {
     }
 };
 
+const NumericPage = ({ params }: { params: Promise<{ slug: string }> }) => {
 
-const StoryPage = ({ params }: { params: Promise<{ slug: string }> }) => {
     const searchParams = useSearchParams();
     const subtopicId = searchParams.get('subtopicId');
     
@@ -61,11 +58,11 @@ const StoryPage = ({ params }: { params: Promise<{ slug: string }> }) => {
     // Fetch the story once we have the slug
     useEffect(() => {
         const loadStory = async () => {
-            if (!slug) return; // Don't fetch if we don't have the slug yet
+            if (!slug || !subtopicId) return; // Don't fetch if we don't have the slug yet
             
             setLoading(true);
             try {
-                const fetchedStory = await fetchStory(slug, subtopicId);
+                const fetchedStory = await fetchStory(slug, subtopicId); 
                 setStory(fetchedStory);
             } catch (err: any) {
                 setError(err.message || 'Failed to load story');
@@ -79,19 +76,21 @@ const StoryPage = ({ params }: { params: Promise<{ slug: string }> }) => {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
-    if (!story) return <p>Story not found.</p>; 
+    if (!story) return <p> Numeric Story not found.</p>;
 
     return (
-        <div className={styles.storyContainer}>
+        <div className={styles.numericContainer}>
             <h1 className={styles.storyTitle}>{story.title}</h1>
-            
-            <div className={styles.storyContent}>
-                {story.l2.map((paragraph, index) => (
-                    <p key={index}>{paragraph.text}</p>
+            <h2>Numeric Details</h2>  
+            <ul className={styles.numericList}>
+                {story.numeric.map((item, index) => (
+                    <li key={index}>
+                        <strong>{item.boldText}</strong>: {item.content}
+                    </li>
                 ))}
-            </div>
+            </ul>
         </div>
     );
 };
 
-export default StoryPage;
+export default NumericPage;

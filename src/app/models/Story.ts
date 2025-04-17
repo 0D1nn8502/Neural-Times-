@@ -20,8 +20,21 @@ subtopicSchema.index({category: 1});
 
 const storySchema = new mongoose.Schema({
   title: { type: String, required: true },
-  l1: { type: String, required: true },
-  l2: { type: String, required: true },
+
+  l1: [{ 
+    boldText: {type: String, required: true}, 
+    content: {type: String, required: true} 
+  }],
+
+  l2: [{
+    text: {type: String, required: true} 
+  }],
+
+  numeric: [{
+    boldText: {type: String, required: true}, 
+    content: {type: String, required: true}  
+  }],
+
   slug: { type: String, required: true, unique: true },
   categoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
   subtopicId: { type: mongoose.Schema.Types.ObjectId, ref: 'SubTopic', required: true } 

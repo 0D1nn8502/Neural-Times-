@@ -157,12 +157,31 @@ export default function HomePage() {
           {stories.map((story: Story) => (
               
                 <div key={story._id} className={styles.storyCard}>
-                  <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`} target='_blank'> 
+                  
                   <div className={styles.storyTitle}>
                       {story.title}
+                  </div> 
+                  
+                  {/* Render bullet points for l1 */}
+                  <ul className={styles.bulletList}>
+                                {story.l1.map((bullet, index) => (
+                                    <li key={index}>
+                                        <strong>{bullet.boldText}</strong>: {bullet.content}
+                                    </li>
+                                ))}
+                  </ul>
+
+
+
+                  <div className={styles.storyLinks}>
+                                <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link}>
+                                    L2 Summary 
+                                </Link>
+                                <Link href={`/numeric/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link}>
+                                    Numeric Summary 
+                                </Link>
                   </div>
-                  </Link> 
-                  <p className={styles.storyExcerpt}>{story.l1}</p>
+
                 </div>
               
             ))}
