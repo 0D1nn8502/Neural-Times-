@@ -1,5 +1,6 @@
 /* app/HomePage.module.css */
 
+
 .mainContainer {
   max-width: 900px;
   margin: 2rem auto;
@@ -19,6 +20,35 @@
   font-weight: 600;
 }
 
+.introduction {
+  text-align: center; /* Center the text */
+  margin: 40px 0; /* Add some margin */
+  margin-bottom: 130px;
+  padding: 20px; /* Add padding for aesthetics */
+  background-color: paleturquoise; /* Light background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  opacity: 0; /* Start hidden */
+  transform: translateY(20px); /* Start slightly below */
+  animation: fadeInUp 0.5s forwards; /* Apply animation */
+}
+
+/* Keyframes for fade-in effect */
+@keyframes fadeInUp {
+  to {
+      opacity: 1; /* Fully visible */
+      transform: translateY(0); /* Move to original position */
+  }
+}
+
+
+.introduction p {
+  font-size: 1.2rem; /* Slightly larger font size for the paragraph */
+  color: #555; /* Medium gray text color */
+  line-height: 1.5; /* Improve readability */
+}
+
+
 .dropdownContainer {
   margin-bottom: 1.5rem;
   display: flex;
@@ -27,15 +57,32 @@
 }
 
 .label {
+  font-size: 1.2rem; 
   font-weight: 600;
   color: #333;
 }
 
 .categoryDropdown {
-  padding: 0.6rem 0.8rem;
+  padding: 10px;
   font-size: 1rem;
   border-radius: 6px;
-  border: 1px solid green;
+  border: 1px solid;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.categoryDropdown:focus {
+  border-color: #0070f3; /* Change border color on focus */
+  border: ;
+  outline: none; /* Remove default outline */
+}
+
+.categoryDropdown option {
+  padding: 10px; /* Add padding to options */
+}
+
+/* Change the background color of the dropdown options on hover */
+.categoryDropdown option:hover {
+  background-color: #e0e0e0; /* Light gray on hover */
 }
 
 .subtopicsRow {
@@ -118,6 +165,10 @@
 .bulletList {
   list-style-type: disc; /* Use disc for bullet points */
   margin-left: 20px; /* Indent bullet points */
+}
+
+.bulletList li {
+  margin-bottom: 15px; 
 }
 
 .storyTitle a {

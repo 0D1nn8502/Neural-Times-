@@ -4,8 +4,15 @@ import { useState, useEffect } from 'react';
 import styles from './HomePage.module.css';
 import {Category, Story, Subtopic} from "@/app/types";
 import Link from 'next/link'; 
+import {Lora} from 'next/font/google'; 
+ 
 
 // TODO : Can the categories be prefetched (SSR)? //  
+
+const lora = Lora ({
+  subsets: ['latin'] 
+})
+
 
 export default function HomePage() { 
   const [categories, setCategories] = useState<Category[]>([]); 
@@ -99,7 +106,19 @@ export default function HomePage() {
 
 
   return (
-    <div className={styles.mainContainer}>
+    <div className='sarvasv'>  
+
+  
+    <div className={styles.introduction}> 
+        <p className={styles.lora}>
+          PolicyStory is an LLM-based tool that summarizes recent developments and trends in Indian policy. We intend to provide a <b>topic oriented</b>, <b>chronological</b>,
+          and <b>longitudinal</b> summary of policy news over time, alongside analytics around the news topics. 
+        </p>
+
+    </div> 
+
+    <div className={styles.mainContainer}> 
+
       {/* Category Dropdown */}
       <div className={styles.dropdownContainer}>
         <label htmlFor="category-select" className={styles.label}>
@@ -175,7 +194,7 @@ export default function HomePage() {
 
                   <div className={styles.storyLinks}>
                                 <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link} target='_blank'> 
-                                    L2 Summary 
+                                    Detailed (L2) Summary 
                                 </Link>
                               
                                 {story.numeric.length > 0 && (<Link href={`/numeric/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link} target='_blank'>
@@ -215,5 +234,6 @@ export default function HomePage() {
         }
       `}</style>
     </div>
+    </div>  
   );
 }
