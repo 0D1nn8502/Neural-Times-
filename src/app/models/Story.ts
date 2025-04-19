@@ -15,8 +15,10 @@ const subtopicSchema = new mongoose.Schema({
     categoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true }
 }); 
 
+// Within a category, no duplicate subtopics // 
+subtopicSchema.index({ categoryId: 1, name:  1 }, { unique: true });
+subtopicSchema.index({ categoryId: 1, label: 1 }, { unique: true });
 
-subtopicSchema.index({category: 1}); 
 
 const storySchema = new mongoose.Schema({
   title: { type: String, required: true },

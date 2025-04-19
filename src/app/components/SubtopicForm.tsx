@@ -39,7 +39,7 @@ const SubtopicForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Replace with your API call to save the subtopic // 
+ 
     try {
 
       const res = await fetch('../api/subtopics/add', {

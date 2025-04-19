@@ -174,31 +174,25 @@ export default function HomePage() {
 
 
                   <div className={styles.storyLinks}>
-                                <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link}>
+                                <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link} target='_blank'> 
                                     L2 Summary 
                                 </Link>
-                                <Link href={`/numeric/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link}>
+                              
+                                {story.numeric.length > 0 && (<Link href={`/numeric/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link} target='_blank'>
                                     Numeric Summary 
                                 </Link>
+
+                                )}
                   </div>
 
                 </div>
               
             ))}
+
         </div>
       )}
 
-      {/* Links to Add Category, Subtopic, and Story Pages */}
-      <div className={styles.addLinks}>
-        <h3>Manage Content</h3>
       
-          <ul>
-            <li> <Link href="/admin/add-category" target='_blank'> Add Category </Link> </li>
-            <li> <Link href="/admin/add-subtopic" target='_blank'> Add Subtopic </Link> </li>
-            <li> <Link href="/admin/add-story" target='_blank'> Add Story </Link> </li> 
-          </ul> 
-        
-      </div>
 
       {/* Styles for Loading Spinner */}
       <style jsx>{`

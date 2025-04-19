@@ -1,7 +1,7 @@
 'use client'; 
 
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import styles from './StoryPage.module.css';
 import { Story } from '@/app/types';
 
@@ -37,6 +37,7 @@ const fetchStory = async (slug: string, subtopicId: string | null) => {
 const StoryPage = ({ params }: { params: Promise<{ slug: string }> }) => {
     const searchParams = useSearchParams();
     const subtopicId = searchParams.get('subtopicId');
+    const router = useRouter(); 
     
     const [slug, setSlug] = useState<string>('');
     const [story, setStory] = useState<Story | null>(null);
@@ -81,8 +82,10 @@ const StoryPage = ({ params }: { params: Promise<{ slug: string }> }) => {
     if (error) return <p>{error}</p>;
     if (!story) return <p>Story not found.</p>; 
 
-    return (
+    return ( 
+
         <div className={styles.storyContainer}>
+
             <h1 className={styles.storyTitle}>{story.title}</h1>
             
             <div className={styles.storyContent}>
@@ -91,6 +94,8 @@ const StoryPage = ({ params }: { params: Promise<{ slug: string }> }) => {
                 ))}
             </div>
         </div>
+
+        
     );
 };
 
