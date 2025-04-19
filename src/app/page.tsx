@@ -111,8 +111,7 @@ export default function HomePage() {
   
     <div className={styles.introduction}> 
         <p className={styles.lora}>
-          PolicyStory is an LLM-based tool that summarizes recent developments and trends in Indian policy. We intend to provide a <b>topic oriented</b>, <b>chronological</b>,
-          and <b>longitudinal</b> summary of policy news over time, alongside analytics around the news topics. 
+        PolicyStory is an information tool that summarizes Indian policy related news in a comprehensible fashion. It provides a <b>topic oriented</b>, <b>chronological</b>, <b>longitudinal</b>, easy-to-understand summary of policy news. This is the beta version of the tool, and it's absolutely free to use! 
         </p>
 
     </div> 
