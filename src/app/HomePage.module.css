@@ -28,17 +28,7 @@
   background-color: paleturquoise; /* Light background color */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  opacity: 0; /* Start hidden */
-  transform: translateY(20px); /* Start slightly below */
-  animation: fadeInUp 0.5s forwards; /* Apply animation */
-}
-
-/* Keyframes for fade-in effect */
-@keyframes fadeInUp {
-  to {
-      opacity: 1; /* Fully visible */
-      transform: translateY(0); /* Move to original position */
-  }
+  
 }
 
 
