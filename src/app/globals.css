@@ -1,10 +1,12 @@
 
 body {
-  background-color: #fefefe;  
+  background-color: beige;  
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
 }
+
+
 
 .heading-container {
   display: flex; 

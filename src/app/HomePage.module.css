@@ -1,12 +1,17 @@
 /* app/HomePage.module.css */
 
+.sarvasv {
+  min-width: 100vw;
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  padding-top: 2rem;        /* Optional spacing from top */
+}
 
 .mainContainer {
-  max-width: 900px;
   margin: 2rem auto;
   padding: 2rem;
   background-color: #fefefe;
-  border: 2px solid green;
+  border: 2px blue;
   border-radius: 8px;
   font-family: 'Segoe UI', sans-serif;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -180,4 +185,8 @@
   display: flex;
   justify-content: center;
   margin-top: 4rem;
+}
+
+.marginTop {
+  margin-top: 2rem;
 }

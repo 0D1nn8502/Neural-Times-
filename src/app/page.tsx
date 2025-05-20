@@ -5,7 +5,7 @@ import styles from './HomePage.module.css';
 import {Category, Story, Subtopic} from "@/app/types";
 import Link from 'next/link'; 
 import {Lora} from 'next/font/google'; 
- 
+import {Card} from  '@/app/components/Card/Card';     
 
 // TODO : Can the categories be prefetched (SSR)? //  
 
@@ -106,9 +106,9 @@ export default function HomePage() {
 
 
   return (
-    <div className='sarvasv'>  
+    <div className={styles.sarvasv}>   
 
-  
+    <Card className={styles.marginTop}>    
     <div className={styles.introduction}> 
         <p className={styles.lora}>
         PolicyStory is an information tool that summarizes Indian policy related news in a comprehensible fashion. It provides a <b>topic oriented</b>, <b>chronological</b>, <b>longitudinal</b>, easy-to-understand summary of policy news. This is the beta version of the tool, and it's absolutely free to use! 
@@ -189,8 +189,6 @@ export default function HomePage() {
                                 ))}
                   </ul>
 
-
-
                   <div className={styles.storyLinks}>
                                 <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link} target='_blank'> 
                                     Detailed (L2) Summary 
@@ -206,7 +204,6 @@ export default function HomePage() {
                 </div>
               
             ))}
-
         </div>
       )}
 
@@ -233,6 +230,7 @@ export default function HomePage() {
         }
       `}</style>
     </div>
+    </Card> 
     </div>  
   );
 }
