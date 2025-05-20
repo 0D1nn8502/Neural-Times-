@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center; /* Horizontal centering */
   padding-top: 2rem;        /* Optional spacing from top */
+  padding: 2rem; /* Made the difference */ 
 }
 
 .mainContainer {
