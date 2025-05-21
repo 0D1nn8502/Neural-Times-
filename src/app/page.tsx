@@ -46,6 +46,9 @@ export default function HomePage() {
     fetchCategories();
   }, []);
 
+  const handleNumericClick = () => {
+    alert('No numerical stories yet');
+  }; 
 
   useEffect(() => {
     const fetchSubtopics = async () => {
@@ -106,7 +109,7 @@ export default function HomePage() {
 
 
   return (
-    <div className={styles.sarvasv}>   
+    <div className={styles.sarvasv}>  
 
     <Card className={styles.marginTop}>    
     <div className={styles.introduction}> 
@@ -194,10 +197,18 @@ export default function HomePage() {
                                     Detailed (L2) Summary 
                                 </Link>
                               
-                                {story.numeric.length > 0 && (<Link href={`/numeric/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link} target='_blank'>
+                                {story.numeric.length > 0 ? (<Link href={`/numeric/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link} target='_blank'>
                                     Numeric Summary 
                                 </Link>
 
+                                ) : (
+                                  <span 
+                                    className={styles.link} 
+                                    onClick={handleNumericClick} 
+                                    style={{ cursor: 'pointer'}} 
+                                    > 
+                                      Numeric Summary
+                                    </span>
                                 )}
                   </div>
 
