@@ -8,11 +8,8 @@ export async function POST(request: Request) {
 
     try {
         const { categoryId, subtopicId, title, l1, l2, slug, numeric } = await request.json();
-        
-        // Ensure numeric is an array or default to an empty array
-        const parsedNumeric = Array.isArray(numeric) ? numeric : []; 
 
-        const newStory = new Story({ categoryId, subtopicId, title, l1, l2, slug, parsedNumeric }); 
+        const newStory = new Story({ categoryId, subtopicId, title, l1, l2, slug, numeric}); 
         
         await newStory.save();
         return NextResponse.json({ message: 'Story added successfully!', story: newStory }, { status: 201 });
