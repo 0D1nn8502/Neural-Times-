@@ -83,11 +83,28 @@ const NumericPage = ({ params }: { params: Promise<{ slug: string }> }) => {
             <h1 className={styles.storyTitle}>{story.title}</h1>
             <h2>Numeric Details</h2>  
             <ul className={styles.numericList}>
-                {story.numeric.map((item, index) => (
-                    <li key={index}>
-                        <strong>{item.boldText}</strong>: {item.content}
-                    </li>
-                ))}
+                {story.numeric.map((item, index) => {
+                    console.log(item); 
+                    return (<li key={index}>
+                        <strong>{item.boldText}</strong> 
+                        {item.content && ( 
+                            <> 
+                            : {item.content}
+                            </> 
+                        )}
+                    
+                        {item.bullets && (
+                            <ul className={styles.bulletList}>
+                                {item.bullets.map((bullet, bulletIndex) => (
+                                    <li key={bulletIndex}>{bullet}</li>
+                                ))} 
+                            </ul> 
+                        )}
+
+                    </li> 
+                    ) 
+                })} 
+
             </ul>
         </div>
     );

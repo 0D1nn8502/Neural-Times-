@@ -13,6 +13,12 @@ export interface Subtopic {
   categoryId: string;  // Stored as a string version of ObjectId
 }
 
+type NumericItem = {
+  boldText: string; 
+  content?: string;
+  bullets?: string[];  
+} 
+
 export interface Story {
   _id: string;      // Automatically created by Mongoose
   title: string;
@@ -21,12 +27,13 @@ export interface Story {
 
   l2: Array<{ text: string }>;  
 
-  numeric: Array<{ boldText: string; content: string }>;   
+  numeric: Array<NumericItem>;    
 
   slug: string;
   categoryId: string;  // Stored as a string version of ObjectId
   subtopicId: string;  // Stored as a string version of ObjectId
 }
+
 
 // GroupedStories interface for aggregation results on the frontend:
 export interface GroupedStories {

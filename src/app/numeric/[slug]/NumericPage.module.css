@@ -19,3 +19,12 @@
     margin-left: 20px; /* Indent bullet points */
     color: #555;
 }
+
+
+.bulletList {
+    list-style-type: disc;
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;  /* key: ensure bullets indent */
+    margin-bottom: 1rem; 
+}
+  

@@ -34,7 +34,8 @@ const storySchema = new mongoose.Schema({
 
   numeric: [{
     boldText: {type: String, required: true}, 
-    content: {type: String, required: true}  
+    content: {type: String}, 
+    bullets: [{type: String}] 
   }],
 
   slug: { type: String, required: true, unique: true },
