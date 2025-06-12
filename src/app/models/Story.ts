@@ -25,7 +25,8 @@ const storySchema = new mongoose.Schema({
 
   l1: [{ 
     boldText: {type: String, required: true}, 
-    content: {type: String, required: true} 
+    content: {type: String}, 
+    bullets: [{type: String}] 
   }],
 
   l2: [{

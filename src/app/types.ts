@@ -23,7 +23,11 @@ export interface Story {
   _id: string;      // Automatically created by Mongoose
   title: string;
 
-  l1: Array<{ boldText: string; content: string }>;  
+  l1: Array<{ 
+    boldText: string; 
+    content: string 
+    bullets?: string[];  
+  }>;  
 
   l2: Array<{ text: string }>;  
 

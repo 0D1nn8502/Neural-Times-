@@ -185,12 +185,23 @@ export default function HomePage() {
                   
                   {/* Render bullet points for l1 */}
                   <ul className={styles.bulletList}>
-                                {story.l1.map((bullet, index) => (
-                                    <li key={index}>
-                                        <strong>{bullet.boldText}</strong>: {bullet.content}
-                                    </li>
-                                ))}
-                  </ul>
+                      {story.l1.map((item, index) => (
+                        <li key={index}>
+                          <strong>{item.boldText}</strong>
+                          {/* Render content if it exists */}
+                          {item.content && <>: {item.content}</>}
+
+                          {/* Render bullets if they exist */}
+                          {item.bullets && (
+                            <ul className={styles.bulletList}>
+                              {item.bullets.map((bullet, bulletIndex) => (
+                                <li key={bulletIndex}>{bullet}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </li>
+                      ))}
+                  </ul> 
 
                   <div className={styles.storyLinks}>
                                 <Link href={`/full/${story.slug}?subtopicId=${selectedSubtopic}`} className={styles.link} target='_blank'> 
