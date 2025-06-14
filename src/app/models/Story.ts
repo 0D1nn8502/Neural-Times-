@@ -1,8 +1,6 @@
-import mongoose, { mongo, MongooseError } from "mongoose"; 
+import mongoose, {MongooseError } from "mongoose"; 
 
-// Design Considerations // 
-
-// SubTopics within a category, need not be unique to that category? : At this stage, we dont know what all subtopics might end up being added //   
+  
 
 const categorySchema = new mongoose.Schema({ 
     name: {type: String, required: true, unique: true},  

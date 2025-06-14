@@ -5,6 +5,8 @@ import { NextResponse } from "next/server";
 import dbConnect from '@/app/utils/dbConnect';
 import { Category } from "@/app/models/Story";
 
+
+
 export async function GET() {
     const connection = await dbConnect();
   
