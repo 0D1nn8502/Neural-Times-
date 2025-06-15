@@ -1,5 +1,5 @@
 
-// (Server Component) // 
+// (Server Component) : For static site generation // 
 
 import HomePage from './components/HomePage'; 
 import { fetchCategoriesServer } from './lib/storyFetching'; 
