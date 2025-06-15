@@ -5,6 +5,12 @@ import HomePage from './components/HomePage';
 import { fetchCategoriesServer } from './lib/storyFetching'; 
 import { Category } from './types';
 
+
+export const metadata = {
+  title: 'Your Page Title',
+  description: 'Page description',
+} 
+
 export default async function Page() {
   let initialCategories : Category[] = []; 
   let categoriesError = undefined;
