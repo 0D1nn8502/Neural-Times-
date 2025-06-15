@@ -46,6 +46,7 @@ export default function HomePage(props : HomePageProps) {
       const getSubtopics = async () => {
         if (!selectedCategoryId) return; 
         setSelectedSubtopic('');
+        setLoading(true); 
   
         try {
           const data = await fetchSubtopics(selectedCategoryId);   
@@ -54,9 +55,11 @@ export default function HomePage(props : HomePageProps) {
         } catch (error) {
           console.error("Error fetching subtopics:", error);
         }
+        setLoading(false); 
       }
   
       getSubtopics(); 
+      
     }, [selectedCategoryId]); 
   
     useEffect(() => {
