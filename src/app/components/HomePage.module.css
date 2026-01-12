@@ -191,3 +191,49 @@
 .marginTop {
   margin-top: 2rem;
 }
+
+
+.tabsContainer {
+  display: flex;
+  gap: 0;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tabButton {
+  padding: 0.75rem 2rem;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  bottom: -2px;
+}
+
+.tabButton:hover {
+  color: #0070f3;
+  background: #f5f9ff;
+}
+
+.activeTab {
+  color: #0070f3;
+  border-bottom-color: #0070f3;
+  font-weight: 600;
+}
+
+.tabButton:focus {
+  outline: none;
+}
+
+/* Responsive design for tabs */
+@media (max-width: 768px) {
+  .tabButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
